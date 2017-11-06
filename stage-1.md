@@ -50,7 +50,7 @@ api/server.js
 We need to add the routes to our server.
 
 ``` js
-const colorRoutes = require('./routers/colors')
+const colorRoutes = require('./routes/colors')
 
 //.... after the app.use
 
