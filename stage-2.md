@@ -16,7 +16,7 @@ import fetch from 'isomorphic-fetch'
 let colors
 
 // load colors
-fetch('http://localhost:5000/colors').then(res => res.json)
+fetch('http://localhost:5000/colors').then(res => res.json())
   .then(colors => colors = colors)
 
 const li = color => {
@@ -28,7 +28,7 @@ const li = color => {
 const Colors = props => {
   return (
     <div>
-      <ul>{map(li, colors)}</li>
+      <ul>{map(li, colors)}</ul>
     </div>
   )
 }

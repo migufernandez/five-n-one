@@ -9,7 +9,7 @@ const FortuneCookies = map(createFortuneCookies, keys(cssfortuneCookiesObj))
 
 module.exports = app => {
 
-  app.get('/fortunecookies', (req, res) => {
+  app.get('/fortune-cookies', (req, res) => {
     res.send(FortuneCookies)
   })
 }
