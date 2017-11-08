@@ -2,7 +2,7 @@ import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
 import { addColor, chgColor } from '../../action-creators/colors'
-//
+
 const ColorForm = props => {
   return (
     <div>
@@ -13,7 +13,7 @@ const ColorForm = props => {
         onSubmit={props.onSubmit(props.history)}
         {...props.currentColor}
       />
-    </div> 
+    </div>
   )
 }
 

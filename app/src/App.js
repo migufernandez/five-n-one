@@ -9,6 +9,8 @@ import EmojiForm from './pages/emojis/form'
 import FortuneCookieForm from './pages/fortune-cookies/form'
 import StarwarForm from './pages/starwars/form'
 
+import ShowColor from './pages/colors/show'
+
 import React from 'react'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 
@@ -44,6 +46,7 @@ const App = props => {
         <Switch>
           <Route exact path="/" component={Menu} />
 
+          <Route path="/colors/:id" component={ShowColor} />
           <Route path="/colors/new" component={ColorForm} />
           <Route path="/colors" component={Colors} />
 
