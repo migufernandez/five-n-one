@@ -17,7 +17,7 @@ module.exports = app => {
     res.send(colors)
   })
 
-  app.post('/colors', (req, res) => {
+  app.post('/colors/new', (req, res) => {
     console.log('in api POST')
     if (isNil(req.body)) {
       res.status(500).send({

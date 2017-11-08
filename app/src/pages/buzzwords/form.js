@@ -1,39 +1,39 @@
 import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
-import { addColor, chgColor } from '../../action-creators/colors'
+import { addBuzzword, chgBuzzword } from '../../action-creators/buzzwords'
 //
-const ColorForm = props => {
+const BuzzwordForm = props => {
   return (
     <div>
-      <h1>Add New Color</h1>
+      <h1>Add New Buzzword</h1>
       <Form
-        cancelUrl="/colors"
+        cancelUrl="/buzzwords"
         onChange={props.onChange}
         onSubmit={props.onSubmit(props.history)}
-        {...props.currentColor}
+        {...props.currentBuzzword}
       />
-    </div> 
+    </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    currentColor: state.currentColor
+    currentBuzzword: state.currentBuzzword
   }
 }
 
 const mapActionsToProps = dispatch => {
   return {
     onChange: (field, value) => {
-      dispatch(chgColor(field, value))
+      dispatch(chgBuzzword(field, value))
     },
-    onSubmit: history => color => e => {
+    onSubmit: history => buzzword => e => {
       e.preventDefault()
-      dispatch(addColor(color, history))
+      dispatch(addBuzzword(buzzword, history))
     }
   }
 }
 
 const connector = connect(mapStateToProps, mapActionsToProps)
-export default connector(ColorForm)
+export default connector(BuzzwordForm)

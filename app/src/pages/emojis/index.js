@@ -1,6 +1,7 @@
 import React from 'react'
 import { map } from 'ramda'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 // load emojis
 
@@ -19,6 +20,7 @@ const Emojis = props => {
   return (
     <div>
       <h1>Emojis</h1>
+      <Link to="/emojis/new">Add New Emoji</Link>
       <ul>{map(li, props.emojis)}</ul>
     </div>
   )

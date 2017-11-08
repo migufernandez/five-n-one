@@ -18,3 +18,4 @@ export const currentColor = (state = '', action) => {
       return state
   }
 }
+ 

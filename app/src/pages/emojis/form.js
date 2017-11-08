@@ -1,39 +1,39 @@
 import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
-import { addColor, chgColor } from '../../action-creators/colors'
+import { addEmoji, chgEmoji } from '../../action-creators/emojis'
 //
-const ColorForm = props => {
+const EmojiForm = props => {
   return (
     <div>
-      <h1>Add New Color</h1>
+      <h1>Add New Emoji</h1>
       <Form
-        cancelUrl="/colors"
+        cancelUrl="/emojis"
         onChange={props.onChange}
         onSubmit={props.onSubmit(props.history)}
-        {...props.currentColor}
+        {...props.currentEmoji}
       />
-    </div> 
+    </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    currentColor: state.currentColor
+    currentEmoji: state.currentEmoji
   }
 }
 
 const mapActionsToProps = dispatch => {
   return {
     onChange: (field, value) => {
-      dispatch(chgColor(field, value))
+      dispatch(chgEmoji(field, value))
     },
-    onSubmit: history => color => e => {
+    onSubmit: history => emoji => e => {
       e.preventDefault()
-      dispatch(addColor(color, history))
+      dispatch(addEmoji(emoji, history))
     }
   }
 }
 
 const connector = connect(mapStateToProps, mapActionsToProps)
-export default connector(ColorForm)
+export default connector(EmojiForm)

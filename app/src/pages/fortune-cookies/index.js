@@ -1,6 +1,7 @@
 import React from 'react'
 import { map } from 'ramda'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 // load fortune-cookies
 
@@ -19,6 +20,7 @@ const FortuneCookies = props => {
   return (
     <div>
       <h1>FortuneCookies</h1>
+      <Link to="/fortune-cookies/new">Add New Fortune-Cookie</Link>
       <ul>{map(li, props.fortuneCookies)}</ul>
     </div>
   )

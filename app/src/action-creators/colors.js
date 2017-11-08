@@ -11,17 +11,13 @@ export const addColor = (color, history) => async (dispatch, getState) => {
   const headers = { 'Content-Type': 'application/json' }
   const method = 'POST'
   const body = JSON.stringify(color)
-  console.log('BODY', body)
 
-  const result = await fetch(url, {
+  const result = await fetch(url + '/new', {
     headers,
     method,
     body
   }).then(res => res.json())
-  console.log('RESULT', result)
-  console.log('RESULT.ok', result.ok)
   if (result.ok) {
-    console.log('I am here')
     dispatch(setColors)
     history.push('/colors')
   } else {

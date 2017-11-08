@@ -4,6 +4,10 @@ import Emojis from './pages/emojis'
 import FortuneCookies from './pages/fortune-cookies'
 import Starwars from './pages/starwars'
 import ColorForm from './pages/colors/form'
+import BuzzwordForm from './pages/buzzwords/form'
+import EmojiForm from './pages/emojis/form'
+import FortuneCookieForm from './pages/fortune-cookies/form'
+import StarwarForm from './pages/starwars/form'
 
 import React from 'react'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
@@ -43,9 +47,16 @@ const App = props => {
           <Route path="/colors/new" component={ColorForm} />
           <Route path="/colors" component={Colors} />
 
+          <Route path="/buzzwords/new" component={BuzzwordForm} />
           <Route path="/buzzwords" component={Buzzwords} />
+
+          <Route path="/emojis/new" component={EmojiForm} />
           <Route path="/emojis" component={Emojis} />
+
+          <Route path="/fortune-cookies/new" component={FortuneCookieForm} />
           <Route path="/fortune-cookies" component={FortuneCookies} />
+
+          <Route path="/starwars/new" component={StarwarForm} />
           <Route path="/starwars" component={Starwars} />
         </Switch>
       </div>

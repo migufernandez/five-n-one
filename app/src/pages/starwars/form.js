@@ -1,39 +1,40 @@
 import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
-import { addColor, chgColor } from '../../action-creators/colors'
+import { addStarwar, chgStarwar } from '../../action-creators/starwars'
 //
-const ColorForm = props => {
+const StarwarForm = props => {
   return (
     <div>
-      <h1>Add New Color</h1>
+      <h1>Add New Starwar</h1>
       <Form
-        cancelUrl="/colors"
+        cancelUrl="/starwars"
         onChange={props.onChange}
         onSubmit={props.onSubmit(props.history)}
-        {...props.currentColor}
+        {...props.currentStarwar}
       />
-    </div> 
+    </div>
   )
 }
 
 const mapStateToProps = state => {
+  console.log("CURRENT", state.currentStarwar)
   return {
-    currentColor: state.currentColor
+    currentStarwar: state.currentStarwar
   }
 }
 
 const mapActionsToProps = dispatch => {
   return {
     onChange: (field, value) => {
-      dispatch(chgColor(field, value))
+      dispatch(chgStarwar(field, value))
     },
-    onSubmit: history => color => e => {
+    onSubmit: history => starwar => e => {
       e.preventDefault()
-      dispatch(addColor(color, history))
+      dispatch(addStarwar(starwar, history))
     }
   }
 }
 
 const connector = connect(mapStateToProps, mapActionsToProps)
-export default connector(ColorForm)
+export default connector(StarwarForm)
