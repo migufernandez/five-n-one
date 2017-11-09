@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 const li = fortuneCookie => {
   return (
     <li key={fortuneCookie.id} style={{ fortuneCookie: fortuneCookie.value }}>
+    <Link to={`/fortune-cookies/${fortuneCookie.id}`}>
       {fortuneCookie.value}
+      </Link>
     </li>
   )
 }

@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 const li = buzzword => {
   return (
     <li key={buzzword.id} style={{ buzzword: buzzword.value }}>
+      <Link to={`/buzzwords/${buzzword.id}`}>
       {buzzword.value}
+      </Link>
     </li>
   )
 }

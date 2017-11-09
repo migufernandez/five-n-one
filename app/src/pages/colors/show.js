@@ -13,6 +13,7 @@ class ShowColor extends React.Component {
 
   render() {
     const props = this.props
+    
 
     if (props.currentColor.id !== props.match.params.id) {
       return (
@@ -31,7 +32,6 @@ class ShowColor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('STATE', state)
   return {currentColor: state.currentColor}
 }
 

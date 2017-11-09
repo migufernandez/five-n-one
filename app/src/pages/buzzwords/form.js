@@ -32,7 +32,7 @@ const mapActionsToProps = dispatch => {
       e.preventDefault()
       dispatch(addBuzzword(buzzword, history))
     }
-  }
+  } 
 }
 
 const connector = connect(mapStateToProps, mapActionsToProps)

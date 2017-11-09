@@ -1,5 +1,5 @@
 const starwarsObj = require('starwars-names')
-const { map, keys, prop, append, isNil } = require('ramda')
+const { map, keys, prop, append, isNil, find, propEq } = require('ramda')
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
 const single = starwarsObj.all
@@ -11,9 +11,14 @@ let starwars = map(createStarwars, keys(single))
 
     module.exports = app => {
       app.use(bodyParser.json())
+
       app.get('/starwars', (req, res) => {
         res.send(starwars)
       })
+
+      app.get('/starwars/:id', (req, res) => {
+      res.send(find(propEq('id', req.params.id))(starwars))
+    })
 
       app.post('/starwars/new', (req, res) => {
         console.log('in api POST')

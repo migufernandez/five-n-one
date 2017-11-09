@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 const li = emoji => {
   return (
     <li key={emoji.id} style={{ emoji: emoji.value }}>
+    <Link to={`/emojis/${emoji.id}`}>
       {emoji.value}
+      </Link>
     </li>
   )
 }

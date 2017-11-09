@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { SET_FORTUNECOOKIES, CHG_CURRENT_FORTUNECOOKIE } from '../constants'
+import { SET_FORTUNECOOKIES, CHG_CURRENT_FORTUNECOOKIE, SET_CURRENT_FORTUNECOOKIE } from '../constants'
 const url = 'http://localhost:5000/fortune-cookies'
 
 export const setFortuneCookies = async (dispatch, getState) => {
@@ -26,4 +26,9 @@ export const addFortuneCookie = (fortunecookie, history) => async (dispatch, get
 
 export const chgFortuneCookie = (field, value) => (dispatch, getState) => {
   dispatch({type: CHG_CURRENT_FORTUNECOOKIE, payload: {[field]: value}})
+}
+
+export const getFortuneCookie = id => async (dispatch, getState) => {
+  const fortuneCookie = await fetch(url + '/' + id).then(res => res.json())
+  dispatch({type: SET_CURRENT_FORTUNECOOKIE, payload: fortuneCookie})
 }

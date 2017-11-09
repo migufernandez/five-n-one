@@ -17,6 +17,7 @@ const EmojiForm = props => {
   )
 }
 
+
 const mapStateToProps = state => {
   return {
     currentEmoji: state.currentEmoji

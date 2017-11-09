@@ -18,5 +18,5 @@ export const currentColor = (state = '', action) => {
       return action.payload
     default:
       return state
-  }
+  } 
 }

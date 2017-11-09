@@ -1,5 +1,5 @@
 const cssfortuneCookiesObj = require('fortune-cookie')
-const { map, keys, prop, append, isNil } = require('ramda')
+const { map, keys, prop, append, isNil, find, propEq } = require('ramda')
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
 // create color document
@@ -10,9 +10,14 @@ let fortunecookies = map(createFortuneCookies, keys(cssfortuneCookiesObj))
 
     module.exports = app => {
       app.use(bodyParser.json())
+
       app.get('/fortune-cookies', (req, res) => {
         res.send(fortunecookies)
       })
+
+      app.get('/fortune-cookies/:id', (req, res) => {
+      res.send(find(propEq('id', req.params.id))(fortunecookies))
+    })
 
       app.post('/fortune-cookies/new', (req, res) => {
         console.log('in api POST')

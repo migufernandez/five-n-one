@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { SET_BUZZWORDS, CHG_CURRENT_BUZZWORD } from '../constants'
+import { SET_BUZZWORDS, CHG_CURRENT_BUZZWORD, SET_CURRENT_BUZZWORD } from '../constants'
 const url = 'http://localhost:5000/buzzwords'
 
 export const setBuzzwords = async (dispatch, getState) => {
@@ -12,7 +12,7 @@ export const addBuzzword = (buzzword, history) => async (dispatch, getState) => 
   const method = 'POST'
   const body = JSON.stringify(buzzword)
 
-  const result = await fetch(url + '/new', {
+  const result = await fetch(url + '/new', { 
     headers,
     method,
     body
@@ -27,4 +27,9 @@ export const addBuzzword = (buzzword, history) => async (dispatch, getState) => 
 
 export const chgBuzzword = (field, value) => (dispatch, getState) => {
   dispatch({type: CHG_CURRENT_BUZZWORD, payload: {[field]: value}})
+}
+
+export const getBuzzword = id => async (dispatch, getState) => {
+  const buzzword = await fetch(url + '/' + id).then(res => res.json())
+  dispatch({type: SET_CURRENT_BUZZWORD, payload: buzzword})
 }

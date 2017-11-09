@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 const li = starwar => {
   return (
     <li key={starwar.id}>
+    <Link to={`/starwars/${starwar.id}`}>
       {starwar.value}
+      </Link>
     </li>
   )
 }

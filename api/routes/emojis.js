@@ -1,18 +1,24 @@
 const cssemojisObj = require('emojis-list')
-const { map, keys, prop, append, isNil } = require('ramda')
+const { map, keys, prop, append, isNil, find, propEq } = require('ramda')
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
+const emoji = require("node-emoji")
 // create color document
 const createEmojis = k => ({id: uuid.v4(), name: k,
   value: prop(k, cssemojisObj)})
 
 let emojis = map(createEmojis, keys(cssemojisObj))
 
-    module.exports = app => {
+module.exports = app => {
       app.use(bodyParser.json())
+
       app.get('/emojis', (req, res) => {
         res.send(emojis)
       })
+
+      app.get('/emojis/:id', (req, res) => {
+      res.send(find(propEq('id', req.params.id))(emojis))
+    })
 
       app.post('/emojis/new', (req, res) => {
         console.log('in api POST')
@@ -25,7 +31,9 @@ let emojis = map(createEmojis, keys(cssemojisObj))
           return
         }
         req.body.id = uuid.v4()
-        emojis = append(req.body, emojis)
+        emojis = append(
+          { id: req.body.id, value: emoji.get(`${req.body.value}`) },
+          emojis)
         res.send({ ok: true })
       })
     }

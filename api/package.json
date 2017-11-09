@@ -11,6 +11,7 @@
     "emojis-list": "^2.1.0",
     "express": "^4.16.2",
     "fortune-cookie": "^0.0.1",
+    "node-emoji": "^1.8.1",
     "ramda": "^0.25.0",
     "starwars-names": "^1.6.0",
     "uuid": "^3.1.0"

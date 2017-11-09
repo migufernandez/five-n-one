@@ -18,7 +18,6 @@ const StarwarForm = props => {
 }
 
 const mapStateToProps = state => {
-  console.log("CURRENT", state.currentStarwar)
   return {
     currentStarwar: state.currentStarwar
   }
