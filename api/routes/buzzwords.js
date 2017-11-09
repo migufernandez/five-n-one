@@ -1,5 +1,5 @@
 const cssbuzzwordsObj = require('buzzwords')
-const { map, keys, prop, append, isNil, find, propEq } = require('ramda')
+const { map, keys, prop, append, isNil, find, propEq, reject, equals, compose } = require('ramda')
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
 // create color document
@@ -35,4 +35,12 @@ let buzzwords = map(createBuzzword, keys(cssbuzzwordsObj))
       buzzwords = append(req.body, buzzwords)
       res.send({ ok: true })
     })
+
+    app.delete('/buzzwords/:id', (req, res) => {
+  buzzwords = reject(compose(
+    equals(req.params.id),
+    prop('id')
+  ), buzzwords)
+  res.send({ok: true})
+})
   }

@@ -22,22 +22,22 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 const Menu = props => {
   return (
     <div>
-      <h1>Five in One</h1>
+      <h1 className='avenir next dark-blue ba 1px mr6 br3 ml4'>  Five in One</h1>
       <ul>
-        <li>
-          <Link to="/colors">Colors</Link>
+        <li className='avenir next dark-blue'>
+          <Link className='dark-blue' to="/colors">Colors</Link>
         </li>
-        <li>
-          <Link to="/buzzwords">BuzzWords</Link>
+        <li className='avenir next dark-blue'>
+          <Link className='dark-blue' to="/buzzwords">BuzzWords</Link>
         </li>
-        <li>
-          <Link to="/starwars">Star Wars Names</Link>
+        <li className='avenir next dark-blue'>
+          <Link className='dark-blue' to="/starwars">Star Wars Names</Link>
         </li>
-        <li>
-          <Link to="/fortune-cookies">Fortune Cookies</Link>
+        <li className='avenir next dark-blue'>
+          <Link className='dark-blue' to="/fortune-cookies">Fortune Cookies</Link>
         </li>
-        <li>
-          <Link to="/emojis">Emojis</Link>
+        <li className='avenir next dark-blue'>
+          <Link className='dark-blue' to="/emojis">Emojis</Link>
         </li>
       </ul>
     </div>

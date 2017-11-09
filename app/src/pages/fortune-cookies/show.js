@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getFortuneCookie } from '../../action-creators/fortune-cookies'
+import { getFortuneCookie, removeFortuneCookie } from '../../action-creators/fortune-cookies'
 
 class ShowFortuneCookie extends React.Component {
 
@@ -38,7 +38,11 @@ const mapStateToProps = (state) => {
 const mapActionsToProps = (dispatch) => {
   return {
     getFortuneCookie: id => dispatch(getFortuneCookie(id)),
-    removeFortuneCookie: () => null
+    removeFortuneCookie: (id, history) => {
+      if (window.confirm('Are you sure?')) {
+        dispatch(removeFortuneCookie(id, history))
+      }
+    }
   }
 }
 

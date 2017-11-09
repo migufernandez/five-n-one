@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getStarwar } from '../../action-creators/starwars'
+import { getStarwar, removeStarwar } from '../../action-creators/starwars'
 
 class ShowStarwar extends React.Component {
 
@@ -38,7 +38,11 @@ const mapStateToProps = (state) => {
 const mapActionsToProps = (dispatch) => {
   return {
     getStarwar: id => dispatch(getStarwar(id)),
-    removeStarwar: () => null
+    removeStarwar: (id, history) => {
+      if (window.confirm('Are you sure?')) {
+        dispatch(removeStarwar(id, history))
+      }
+    }
   }
 }
 

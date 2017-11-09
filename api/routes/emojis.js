@@ -1,5 +1,5 @@
 const cssemojisObj = require('emojis-list')
-const { map, keys, prop, append, isNil, find, propEq } = require('ramda')
+const { map, keys, prop, append, isNil, find, propEq, reject, equals, compose } = require('ramda')
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
 const emoji = require("node-emoji")
@@ -36,4 +36,12 @@ module.exports = app => {
           emojis)
         res.send({ ok: true })
       })
+
+      app.delete('/emojis/:id', (req, res) => {
+  emojis = reject(compose(
+    equals(req.params.id),
+    prop('id')
+  ), emojis)
+  res.send({ok: true})
+})
     }

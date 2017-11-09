@@ -1,5 +1,5 @@
 const cssfortuneCookiesObj = require('fortune-cookie')
-const { map, keys, prop, append, isNil, find, propEq } = require('ramda')
+const { map, keys, prop, append, isNil, find, propEq, reject, equals, compose } = require('ramda')
 const bodyParser = require('body-parser')
 const uuid = require('uuid')
 // create color document
@@ -33,4 +33,13 @@ let fortunecookies = map(createFortuneCookies, keys(cssfortuneCookiesObj))
         fortunecookies = append(req.body, fortunecookies)
         res.send({ ok: true })
       })
+
+      app.delete('/fortune-cookies/:id', (req, res) => {
+  fortunecookies = reject(compose(
+    equals(req.params.id),
+    prop('id')
+  ), fortunecookies)
+  res.send({ok: true})
+})
+
     }
