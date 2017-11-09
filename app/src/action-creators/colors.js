@@ -46,3 +46,18 @@ export const removeColor = (id, history) => async (dispatch, getState) => {
     // handle error
   }
 }
+
+export const updateColor = (color, history) => async (dispatch, getState) => {
+  const result = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(color)
+  }).then(res => res.json())
+
+  if (result.ok) {
+    dispatch(setColors)
+    history.push('/colors/' + color.id)
+  }
+}
