@@ -1,9 +1,14 @@
 import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
-import { addBuzzword, chgBuzzword } from '../../action-creators/buzzwords'
+import { addBuzzword, chgBuzzword, clearBuzzword } from '../../action-creators/buzzwords'
 //
-const BuzzwordForm = props => {
+class BuzzwordForm extends React.Component {
+  componentDidMount () {
+    this.props.clearBuzzword()
+}
+render () {
+  const props = this.props
   return (
     <div>
       <h1>Add New Buzzword</h1>
@@ -11,10 +16,12 @@ const BuzzwordForm = props => {
         cancelUrl="/buzzwords"
         onChange={props.onChange}
         onSubmit={props.onSubmit(props.history)}
-        {...props.currentBuzzword}
+        value={props.currentBuzzword.value}
+        name={props.currentBuzzword.name}
       />
     </div>
   )
+}
 }
 
 const mapStateToProps = state => {
@@ -31,8 +38,9 @@ const mapActionsToProps = dispatch => {
     onSubmit: history => buzzword => e => {
       e.preventDefault()
       dispatch(addBuzzword(buzzword, history))
-    }
-  } 
+    },
+    clearBuzzword: () => dispatch(clearBuzzword)
+  }
 }
 
 const connector = connect(mapStateToProps, mapActionsToProps)

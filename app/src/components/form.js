@@ -9,7 +9,7 @@ const Form = ({ id, name, value, onChange, onSubmit, cancelUrl }) => {
        <label className="dib">name</label>
        <input
          type="text"
-         value={name}
+         value={name ? name : ''}
          onChange={e => onChange('name', e.target.value)}
        />
      </div>

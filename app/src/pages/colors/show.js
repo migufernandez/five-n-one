@@ -14,7 +14,6 @@ class ShowColor extends React.Component {
   render() {
     const props = this.props
 
-
     if (props.currentColor.id !== props.match.params.id) {
       return (
         <h1>Loading Color...</h1>

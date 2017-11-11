@@ -12,6 +12,7 @@ const createColor = k => ({
 let colors = map(createColor, keys(csscolorsObj))
 
 module.exports = app => {
+
   app.use(bodyParser.json())
 
   app.get('/colors', (req, res) => {
@@ -21,6 +22,14 @@ module.exports = app => {
   app.get('/colors/:id', (req, res) => {
   res.send(find(propEq('id', req.params.id))(colors))
 })
+
+  app.put('/colors/:id', bodyParser.json(), (req, res) => {
+    if (!req.body) {
+      return res.status(500).send({ok: false, message: 'Color Object Required'})
+    }
+    colors = map(color => propEq('id', req.params.id, color) ? req.body : color, colors)
+    res.send({ok: true})
+  })
 
   app.post('/colors/new', (req, res) => {
     console.log('in api POST')
@@ -44,5 +53,4 @@ module.exports = app => {
   ), colors)
   res.send({ok: true})
 })
-
 }

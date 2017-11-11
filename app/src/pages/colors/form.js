@@ -1,20 +1,27 @@
 import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
-import { addColor, chgColor } from '../../action-creators/colors'
+import { addColor, chgColor, clearColor } from '../../action-creators/colors'
 
-const ColorForm = props => {
-  return (
-    <div>
-      <h1>Add New Color</h1>
-      <Form
-        cancelUrl="/colors"
-        onChange={props.onChange}
-        onSubmit={props.onSubmit(props.history)}
-        {...props.currentColor}
-      />
-    </div>
-  )
+class ColorForm extends React.Component {
+  componentDidMount () {
+    this.props.clearColor()
+  }
+  render () {
+    const props = this.props
+      return (
+        <div>
+          <h1>Add New Color</h1>
+          <Form
+            cancelUrl="/colors"
+            onChange={props.onChange}
+            onSubmit={props.onSubmit(props.history)}
+            value={props.currentColor.value}
+            name={props.currentColor.name}
+          />
+        </div>
+      )
+  }
 }
 
 const mapStateToProps = state => {
@@ -31,7 +38,8 @@ const mapActionsToProps = dispatch => {
     onSubmit: history => color => e => {
       e.preventDefault()
       dispatch(addColor(color, history))
-    }
+    },
+    clearColor: () => dispatch(clearColor)
   }
 }
 

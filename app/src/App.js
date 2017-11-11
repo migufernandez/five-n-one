@@ -17,6 +17,7 @@ import ShowFortuneCookie from './pages/fortune-cookies/show'
 import ShowStarwar from './pages/starwars/show'
 
 import EditColorForm from './pages/colors/edit-form'
+import EditBuzzwordForm from './pages/buzzwords/edit-form'
 
 import React from 'react'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
@@ -53,7 +54,7 @@ const Menu = props => {
     </svg>
   </a>
          <div class="mt4">
-           <a href="#" class="f6 link dim dark-blue dib mr3 mr4-ns">Help</a>
+           <a href="https://www.charlestoncitypaper.com/charleston/HappyHours/Page" class="f6 link dim dark-blue dib mr3 mr4-ns">Help</a>
            <a href="#" class="f6 link dim dark-blue dib mr3 mr4-ns">Send feedback</a>
            <a href="#" class="f6 link dim dark-blue dib mr3 mr4-ns">Privacy</a>
            <a href="#" class="f6 link dim dark-blue dib">Terms</a>
@@ -71,11 +72,12 @@ const App = props => {
           <Route exact path="/" component={Menu} />
 
           <Route path="/colors/new" component={ColorForm} />
+          <Route path="/colors/:id/edit" component={EditColorForm} />
           <Route path="/colors/:id" component={ShowColor} />
           <Route path="/colors" component={Colors} />
-          <Route path="/colors/:id/edit" component={EditColorForm} />
 
           <Route path="/buzzwords/new" component={BuzzwordForm} />
+          <Route path="/buzzwords/:id/edit" component={EditBuzzwordForm} />
           <Route path="/buzzwords/:id" component={ShowBuzzword} />
           <Route path="/buzzwords" component={Buzzwords} />
 

@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { SET_BUZZWORDS, CHG_CURRENT_BUZZWORD, SET_CURRENT_BUZZWORD } from '../constants'
+import { SET_BUZZWORDS, CHG_CURRENT_BUZZWORD, SET_CURRENT_BUZZWORD, CLEAR_BUZZWORD } from '../constants'
 const url = 'http://localhost:5000/buzzwords'
 
 export const setBuzzwords = async (dispatch, getState) => {
@@ -44,5 +44,22 @@ export const removeBuzzword = (id, history) => async (dispatch, getState) => {
     history.push('/buzzwords')
   } else {
     // handle error
+  }
+}
+
+export const clearBuzzword = (dispatch, getState) => {
+  dispatch({type: CLEAR_BUZZWORD})
+}
+
+export const updateBuzzword = (buzzword, history) => async (dispatch, getState) => {
+  const result = await fetch(url + '/' + buzzword.id, {
+    headers: {'Content-Type': 'application/json'},
+    method: 'PUT',
+    body: JSON.stringify(buzzword)
+  }).then(res => res.json())
+
+  if (result.ok) {
+    dispatch(setBuzzwords)
+    history.push('/buzzwords/' + buzzword.id)
   }
 }

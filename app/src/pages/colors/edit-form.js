@@ -2,6 +2,7 @@ import React from 'react'
 import Form from '../../components/form'
 import { connect } from 'react-redux'
 import { getColor, chgColor, updateColor } from '../../action-creators/colors'
+import { omit } from 'ramda'
 
 class EditColorForm extends React.Component {
   componentDidMount () {
@@ -13,18 +14,31 @@ class EditColorForm extends React.Component {
     return (
       <div>
         <h1>Edit Color</h1>
-        <Form {...props} onSubmit={color => props.onSubmit(color, props.history)} />
+        <Form
+          name={props.currentColor.name}
+          value={props.currentColor.value}
+          id={props.currentColor.id}
+          cancelUrl={`/colors/${props.currentColor.id}`}
+          onSubmit={color => this.props.onSubmit(color, props.history)}
+          onChange={props.onChange}
+           />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => state.currentColor
+const mapStateToProps = state => ({
+  currentColor: state.currentColor
+})
+
 const mapActionsToProps = dispatch => {
   return {
     getColor: (id) => dispatch(getColor(id)),
     onChange: (field, value) => dispatch(chgColor(field, value)),
-    onSubmit: (color, history) => dispatch(updateColor(color, history))
+    onSubmit: (color, history) => e => {
+      e.preventDefault()
+      dispatch(updateColor(color, history))
+    }
   }
 }
 const connector = connect(mapStateToProps, mapActionsToProps)

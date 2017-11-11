@@ -1,4 +1,4 @@
-import { SET_COLORS, CHG_CURRENT_COLOR, SET_CURRENT_COLOR } from '../constants'
+import { SET_COLORS, CHG_CURRENT_COLOR, SET_CURRENT_COLOR, CLEAR_COLOR } from '../constants'
 import { merge } from 'ramda'
 
 export const colors = (state = [], action) => {
@@ -9,14 +9,15 @@ export const colors = (state = [], action) => {
       return state
   }
 }
-
 export const currentColor = (state = '', action) => {
   switch (action.type) {
     case CHG_CURRENT_COLOR:
       return merge(state, action.payload)
     case SET_CURRENT_COLOR:
       return action.payload
+    case CLEAR_COLOR:
+      return {id: '', value: ''}
     default:
       return state
-  } 
+  }
 }

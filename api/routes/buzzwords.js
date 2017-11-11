@@ -21,6 +21,15 @@ let buzzwords = map(createBuzzword, keys(cssbuzzwordsObj))
     res.send(find(propEq('id', req.params.id))(buzzwords))
   })
 
+  app.put('/buzzwords/:id', bodyParser.json(), (req, res) => {
+  if (!req.body) {
+    return res.status(500).send({ok: false, message: 'Buzzword Object Required'})
+  }
+
+  buzzwords = map(buzzword => propEq('id', req.params.id, buzzword) ? req.body : buzzword, buzzwords)
+  res.send({ok: true})
+})
+
     app.post('/buzzwords/new', (req, res) => {
       console.log('in api POST')
       if (isNil(req.body)) {

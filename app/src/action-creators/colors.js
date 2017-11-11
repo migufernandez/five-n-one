@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { SET_COLORS, CHG_CURRENT_COLOR , SET_CURRENT_COLOR} from '../constants'
+import { SET_COLORS, CHG_CURRENT_COLOR , SET_CURRENT_COLOR, CLEAR_COLOR} from '../constants'
 const url = 'http://localhost:5000/colors'
 
 export const setColors = async (dispatch, getState) => {
@@ -35,11 +35,11 @@ export const getColor = id => async (dispatch, getState) => {
 }
 
 export const removeColor = (id, history) => async (dispatch, getState) => {
-  const results = await fetch(url + '/' + id, {
+  const result = await fetch(url + '/' + id, {
     method: 'DELETE'
   }).then(res => res.json())
 
-  if (results.ok) {
+  if (result.ok) {
     dispatch(setColors)
     history.push('/colors')
   } else {
@@ -47,11 +47,13 @@ export const removeColor = (id, history) => async (dispatch, getState) => {
   }
 }
 
+export const clearColor = (dispatch, getState) => {
+  dispatch({type: CLEAR_COLOR})
+}
+
 export const updateColor = (color, history) => async (dispatch, getState) => {
-  const result = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
+  const result = await fetch(url + '/' + color.id, {
+    headers: {'Content-Type': 'application/json'},
     method: 'PUT',
     body: JSON.stringify(color)
   }).then(res => res.json())
